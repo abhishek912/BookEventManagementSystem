@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BookEventManagementSystem.Models.Event>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="background-image:url(/Images/391393.jpg);">
+    <h2>Book Event Manager</h2>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-sm-4">
+        <h3>Future Events</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.DateOfEvent >= DateTime.Now)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Title, "Details", "Events", new { id = item.EventId }, new { id = item.EventId })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+    <div class="col-lg-4 col-sm-4">
+        <h3>Past Events</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.DateOfEvent < DateTime.Now.Date)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Title, "Details", "Events", new { id = item.EventId }, new { id = item.EventId })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>

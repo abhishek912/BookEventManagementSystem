@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BookEventManager.Shared.DTO.EventCommentDTO>
+@{ 
+    Layout = null;
+}
+
+<table class="table table-bordered table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.Label("Commented By")
+        </th>
+        <th>
+            @Html.Label("Date/Time")
+        </th>
+        @if (User.Identity.Name.Equals("myadmin@bookevents.com"))
+        {
+            <th>
+                @Html.Label("Action")
+            </th>
+        }
+    </tr>
+@for(int i=0; i<Model.Count(); i++)
+{
+<tr>
+    <td style="word-break:break-all; width:60%;">
+        @Html.DisplayFor(modelItem => Model.ElementAt(i).Comment)
+    </td>
+    <td>
+        <label>@Model.ElementAt(i).Email</label>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.ElementAt(i).CurrentDate)
+    </td>
+    @if (User.Identity.Name.Equals("myadmin@bookevents.com"))
+    {
+        <th>
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ElementAt(i).CommentId })
+        </th>
+    }
+</tr>
+}
+
+</table>

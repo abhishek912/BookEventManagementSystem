@@ -1,0 +1,121 @@
+﻿@model BookEventManagementSystem.Models.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @ViewBag.email
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfEvent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfEvent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @if (Model.Type == true)
+            {
+                @Html.Label("Public");
+            }
+            else
+            {
+                @Html.Label("Private");
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvitedTo)
+        </dt>
+
+        <dd>
+            @if (Model.InvitedTo != null)
+            {
+                foreach (var e in Model.InvitedTo.Split(','))
+                {
+                    <label>@e</label><br />
+                }
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+</p>
+
+<div>
+    @{
+        Html.RenderAction("Create", "EventComments", new { EventId = Model.EventId } );
+    }
+</div>
+
+<div>
+    @{
+        Html.RenderAction("Details", "EventComments", new { EventId = Model.EventId });
+    }
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookEventManager.Shared.DTO.EventDTO>
+
+@{
+    ViewBag.Title = "InvitedTo";
+}
+
+<h2>Invited To Events</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+    </tr>
+    @for (int index = 0; index < Model.Count(); index++)
+    {
+    <tr>
+        <td>
+            @Html.ActionLink(Model.ElementAt(index).Title, "Details", new { id = Model.ElementAt(index).EventId })
+        </td>
+    </tr>
+    }
+
+</table>

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<BookEventManager.Shared.DTO.EventDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfEvent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvitedTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventCreateDateTime)
+        </th>
+        <th>
+            @Html.Label("Action")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.ActionLink(item.Title, "Details", "Events", new { id = item.EventId }, new { id = item.EventId })
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfEvent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+
+    @if (item.Type == true)
+    {
+        <td>
+            @Html.Label("Public")
+        </td>
+    }
+    else
+    {
+        <td>
+            @Html.Label("Private")
+        </td>
+    }
+    <td>
+        @Html.DisplayFor(modelItem => item.Duration)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OtherDetails)
+    </td>
+    <td>
+        @if (item.InvitedTo != null)
+        {
+            foreach (var email in item.InvitedTo.Split(','))
+            {
+                <label>@email</label><br>
+            }
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EventCreateDateTime)
+    </td>
+    <td>
+        @if (item.DateOfEvent >= DateTime.Now)
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = item.EventId })
+        }
+    </td>
+</tr>
+}
+
+</table>

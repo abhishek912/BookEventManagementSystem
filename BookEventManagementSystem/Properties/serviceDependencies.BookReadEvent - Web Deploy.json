@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/abhishek-dbserver-002/databases/bookreadevent_database",
+      "type": "mssql.azure",
+      "connectionId": "EntityContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
